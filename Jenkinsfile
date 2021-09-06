@@ -9,7 +9,7 @@ pipeline {
         _git_address = "https://github.com/NoodleCookie/Rachael-zuul.git"
         _harbor_address = "8.140.110.215:85"
         _harbor_project_name = "rachael"
-        _credentialsId = "harbor"
+        _credentialsId = "119e1727-abf7-4e0c-9fee-5bd19b45e660"
     }
 
     stages {
