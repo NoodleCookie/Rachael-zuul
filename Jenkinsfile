@@ -61,6 +61,7 @@ pipeline {
                        // 远程部署
 //                         sshPublisher(publishers: [sshPublisherDesc(configName: 'Aliyun_server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: "/opt/jenkins_shell/deploy.sh ${_harbor_address} ${_harbor_project_name} ${_project_name} ${_project_version} ${port}", execTimeout: 0, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '', usePty: true)], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
                        //本地部署 （还是从远程拉取镜像
+                            sh "chmod +x ./ci/deploy.sh"
                             sh "./ci/deploy.sh ${_harbor_address} ${_harbor_project_name} ${_project_name} ${_project_version} ${port}"
                      }
                  }
