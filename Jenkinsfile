@@ -15,7 +15,7 @@ pipeline {
     stages {
              stage('Pull Code') {
                  steps{
-                     sh "rm -rf ${env.WORKSPACE}/project"
+                     sh "rm -rf ${env.WORKSPACE}/project/${_project_name}"
                      sh "mkdir -p ${env.WORKSPACE}/project/${_project_name}"
                      dir("${env.WORKSPACE}/project/${_project_name}") {
                          git "${_git_address}"
