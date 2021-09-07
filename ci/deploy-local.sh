@@ -25,12 +25,11 @@ imageId=`docker images | grep -w $_project_name | awk '{print $3}'`
 if [ "${imageId}" != "" ] ; then
 
         docker rmi -f $imageId
+        echo "rmi image exists"
 
-	      docker image prune -f
-
-	      echo "rmi image"
 fi
 
 docker run -d -p $_port:$_port $imageName
-
+docker image prune -f
+echo "rmi image dont use"
 echo "deploy in local"
