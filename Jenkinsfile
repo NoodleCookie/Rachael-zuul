@@ -4,8 +4,8 @@ pipeline {
        maven "M3"
      }
     environment {
-        _project_name = "rachael-zuul"
-        _project_version = "1.0"
+//         _project_name = "rachael-zuul"
+//         _project_version = "1.0"
         _git_address = "https://github.com/NoodleCookie/Rachael-zuul.git"
         _harbor_address = "8.140.110.215:85"
         _harbor_project_name = "rachael"
@@ -47,6 +47,7 @@ pipeline {
                  steps {
                      script {
                          dir("${env.WORKSPACE}/project") {
+                             sh "docker rmi -f ${_project_name}:${_project_version} ."
                              sh "docker build -t ${_project_name}:${_project_version} ."
                              sh "docker tag ${_project_name}:${_project_version} ${_harbor_address}/${_harbor_project_name}/${_project_name}:${_project_version}"
                          }

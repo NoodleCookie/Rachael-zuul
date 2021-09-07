@@ -20,15 +20,6 @@ if [ "${containerId}" != "" ] ; then
 	echo "rm container"
 fi
 
-imageId=`docker images | grep -w $_project_name | awk '{print $3}'`
-
-if [ "${imageId}" != "" ] ; then
-
-        docker rmi -f $imageId
-        echo "rmi image exists"
-
-fi
-
 docker run -d -p $_port:$_port $imageName
 
 echo "deploy in local"
