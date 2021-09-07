@@ -16,8 +16,8 @@ pipeline {
              stage('Pull Code') {
                  steps{
                      sh "rm -rf ${env.WORKSPACE}/project"
-                     sh "mkdir ${env.WORKSPACE}/project"
-                     dir("${env.WORKSPACE}/project") {
+                     sh "mkdir -r ${env.WORKSPACE}/project/${_project_name}"
+                     dir("${env.WORKSPACE}/project/${_project_name}") {
                          git "${_git_address}"
                          }
                     }
@@ -26,7 +26,7 @@ pipeline {
              stage('Compile'){
                      steps{
                          script{
-                             dir("${env.WORKSPACE}/project"){
+                             dir("${env.WORKSPACE}/project/${_project_name}"){
                                  sh "mvn clean compile"
                              }
                          }
@@ -36,7 +36,7 @@ pipeline {
             stage("Build Jar") {
                         steps {
                             script {
-                                dir("${env.WORKSPACE}/project") {
+                                dir("${env.WORKSPACE}/project/${_project_name}") {
                                     sh "mvn clean package"
                                 }
                             }
@@ -46,7 +46,7 @@ pipeline {
             stage("Build Image and Publish") {
                  steps {
                      script {
-                         dir("${env.WORKSPACE}/project") {
+                         dir("${env.WORKSPACE}/project/${_project_name}") {
                              sh "docker rmi -f ${_project_name}:${_project_version} ."
                              sh "docker build -t ${_project_name}:${_project_version} ."
                              sh "docker tag ${_project_name}:${_project_version} ${_harbor_address}/${_harbor_project_name}/${_project_name}:${_project_version}"
