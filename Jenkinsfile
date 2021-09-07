@@ -6,7 +6,7 @@ pipeline {
     environment {
 //         _project_name = "rachael-zuul"
 //         _project_version = "1.0"
-        _git_address = "https://github.com/NoodleCookie/Rachael-zuul.git"
+        _git_address = "https://github.com/NoodleCookie/${_project_name}.git"
         _harbor_address = "8.140.110.215:85"
         _harbor_project_name = "rachael"
         _credentialsId = "24d1ea7f-7c07-4eea-9f84-9a6298334aea"
