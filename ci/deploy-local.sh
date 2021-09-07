@@ -30,6 +30,5 @@ if [ "${imageId}" != "" ] ; then
 fi
 
 docker run -d -p $_port:$_port $imageName
-docker image prune -f
-echo "rmi image dont use"
+
 echo "deploy in local"
