@@ -63,7 +63,7 @@ pipeline {
 
                        // 远程部署
 //                         sshPublisher(publishers: [sshPublisherDesc(configName: 'Aliyun_server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: "/opt/jenkins_shell/deploy.sh ${_harbor_address} ${_harbor_project_name} ${_project_name} ${_project_version} ${port}", execTimeout: 0, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '', usePty: true)], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
-                     }
+//                      }
 
                      script {
                        dir("/var/jenkins_home/workspace/deploy") {
