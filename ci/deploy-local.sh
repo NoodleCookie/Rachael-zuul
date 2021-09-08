@@ -8,7 +8,7 @@ imageName=$_project_name:$_project_version
 
 echo "imageName ====> $imageName"
 
-containerId=`docker ps -a | grep -w ${_project_name}:${_project_version} | awk '{print $1}'`
+containerId=`docker ps -a | grep -w $_project_name:$_project_version | awk '{print $1}'`
 
 echo "containerId ====> $containerId"
 
