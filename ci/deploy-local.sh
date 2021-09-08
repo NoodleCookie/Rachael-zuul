@@ -10,6 +10,8 @@ echo "$imageName"
 
 containerId=`docker ps -a | grep -w ${_project_name}:${_project_version} | awk '{print $1}'`
 
+echo "$containerId"
+
 if [ "${containerId}" != "" ] ; then
 	docker stop $containerId
 
