@@ -1,3 +1,10 @@
+zuul:
+  routes:
+    server-01:
+      path: /server-01/**
+      serviceId: Rachael-Server-01
+  prefix: /zuul
+
 spring:
   application:
     name: Rachael-Zuul
