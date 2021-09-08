@@ -6,18 +6,16 @@ _port=$3
 
 imageName=$_project_name:$_project_version
 
-echo "$imageName"
+echo "imageName ====> $imageName"
 
 containerId=`docker ps -a | grep -w ${_project_name}:${_project_version} | awk '{print $1}'`
 
-echo "$containerId"
+echo "containerId ====> $containerId"
 
 if [ "${containerId}" != "" ] ; then
 	docker stop $containerId
 
 	docker rm $containerId
-
-	docker container prune -f
 
 	echo "rm container"
 fi
