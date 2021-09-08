@@ -16,7 +16,7 @@ echo "containerId ====> $containerId"
 echo "containerId_2 ====> $containerId_2"
 echo "containerId_3 ====> $containerId_3"
 
-if [ "${containerId}" != "" ] ; then
+if [ "${docker ps -a | grep -w ${_project_name}:${_project_version} | awk '{print $1}'}" != "" ] ; then
 	docker stop $containerId
 
 	docker rm $containerId
