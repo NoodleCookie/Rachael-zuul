@@ -1,7 +1,7 @@
 zuul:
   routes:
     server-01:
-      path: /server-01/**
+      path: /server/**
       serviceId: Rachael-Server-01
   prefix: /zuul
 
