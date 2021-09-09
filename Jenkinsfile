@@ -69,7 +69,7 @@ pipeline {
                        dir("/var/jenkins_home/workspace/deploy") {
                             //本地部署
                             sh "chmod +x ./deploy-local.sh"
-                            sh "docker ps -a"
+                            sh "docker ps -a | grep -w ${_project_name}:${_project_version} | awk '{print $1}'"
                             sh "./deploy-local.sh ${_project_name} ${_project_version} ${port}"
                        }
                    }
