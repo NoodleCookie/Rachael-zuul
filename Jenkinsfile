@@ -54,7 +54,9 @@ pipeline {
                                           text: """\
                                       FROM openjdk:11
                                       COPY ./target/${_github_project_name}-${_project_version}-SNAPSHOT.jar app.jar
-                                      CMD ["java","-jar","/app.jar","-Dspring.profiles.active=\$(_active_profile)","--server.port=\${port}"]
+                                      ENV _active_profile ${_active_profile}
+                                      ENV port ${port}
+                                      CMD ["java","-jar","/app.jar","-Dspring.profiles.active=\$(_active_profile)","--server.port=\$(port)"]
                                       """.stripIndent()
                                       )
                                       sh "cat -n Dockerfile"
