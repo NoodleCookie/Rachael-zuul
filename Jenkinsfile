@@ -43,6 +43,26 @@ pipeline {
                         }
                     }
 
+            stage('Write Dockerfile') {
+                             steps{
+                                echo "==== Write Dockerfile start ===="
+                                 dir("${env.WORKSPACE}/project/${_project_name}") {
+                                    sh "rm -f Dockerfile"
+                                    echo "== first remove dockerfile =="
+                                     writeFile(
+                                          file: "Dockerfile",
+                                          text: """\
+                                      FROM openjdk:11
+                                      COPY ./target/${_github_project_name}-${_project_version}-SNAPSHOT.jar app.jar
+                                      CMD ["java","-jar","/app.jar","-Dspring.profiles.active=\$(_active_profile)","--server.port=\$(port)"]
+                                      """.stripIndent()
+                                      )
+                                      sh "cat -n Dockerfile"
+                                      echo "==== Write Dockerfile finish ===="
+                                     }
+                                }
+                             }
+
             stage("Build Image and Publish") {
                  steps {
                      script {
