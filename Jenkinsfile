@@ -56,7 +56,7 @@ pipeline {
                                       COPY ./target/${_github_project_name}-${_project_version}-SNAPSHOT.jar app.jar
                                       ENV env_active_profile ${_active_profile}
                                       ENV env_port ${port}
-                                      CMD ["java","-jar","/app.jar","-Dspring.profiles.active=$(env_active_profile)","--server.port=\${env_port}"]
+                                      CMD ["java","-jar","/app.jar","-Dspring.profiles.active=$(env_active_profile)","--server.port=${env_port}"]
                                       """.stripIndent()
                                       )
                                       sh "cat -n Dockerfile"
