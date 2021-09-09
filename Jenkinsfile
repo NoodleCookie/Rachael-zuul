@@ -53,7 +53,7 @@ pipeline {
                                           file: "Dockerfile",
                                           text: """\
                                       FROM openjdk:11
-                                      COPY ./target/${_github_project_name}-${_project_version}-SNAPSHOT.jar app.jar
+                                      COPY ./target/${_github_project_name}-1.0-SNAPSHOT.jar app.jar
                                       CMD ["java","-jar","/app.jar","--server.port=$port"]
                                       """.stripIndent()
                                       )
