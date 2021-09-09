@@ -46,8 +46,15 @@ pipeline {
             stage("Build Image and Publish") {
                  steps {
                      script {
+                        dir("/var/jenkins_home/workspace/deploy"){
+                            // 删除容器和镜像
+                             sh "chmod +x ./clean-container-image.sh"
+                             sh "./clean-container-image.sh ${_project_name} ${_project_version}"
+                        }
+
+
                          dir("${env.WORKSPACE}/project/${_project_name}") {
-                             sh "docker rmi -f ${_project_name}:${_project_version} ."
+                            // 构建新镜像
                              sh "docker build -t ${_project_name}:${_project_version} ."
                              // push需要打上标签
 //                              sh "docker tag ${_project_name}:${_project_version} ${_harbor_address}/${_harbor_project_name}/${_project_name}:${_project_version}"
